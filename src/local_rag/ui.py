@@ -1,24 +1,35 @@
+import os
 import subprocess
+import chromadb
 import gradio as gr
 from local_rag.pipeline import RAGPipeline
 
-COLLECTIONS = ["default", "python-docs", "peps", "fastapi"]
+COLLECTIONS_FALLBACK = ["python-docs", "peps", "fastapi", "default"]
 
 
 def _get_cloud_models() -> list[str]:
-    """Load available models from ollama list (only those with '-' in size field)."""
     try:
         result = subprocess.run(
             ["ollama", "list"], capture_output=True, text=True, timeout=5
         )
         models = []
-        for line in result.stdout.strip().split("\n")[1:]:  # skip header
+        for line in result.stdout.strip().split("\n")[1:]:
             parts = line.split()
-            if len(parts) >= 3 and "-" in parts[2]:  # size field has '-'
+            if len(parts) >= 3 and "-" in parts[2]:
                 models.append(parts[0])
         return models if models else ["qwen3-coder:480b-cloud"]
     except Exception:
         return ["qwen3-coder:480b-cloud"]
+
+
+def _get_collections() -> list[str]:
+    try:
+        chroma_dir = os.getenv("CHROMA_DIR", "./data/chroma")
+        client = chromadb.PersistentClient(path=chroma_dir)
+        names = sorted(c.name for c in client.list_collections())
+        return names if names else COLLECTIONS_FALLBACK
+    except Exception:
+        return COLLECTIONS_FALLBACK
 
 
 _pipeline = RAGPipeline()
@@ -41,12 +52,14 @@ def query_fn(question: str, collection: str, model: str, top_k: int, show_source
 
 def create_ui() -> gr.Blocks:
     models = _get_cloud_models()
+    collections = _get_collections()
+    default_collection = collections[0] if collections else "peps"
     with gr.Blocks(title="Local RAG") as demo:
         gr.Markdown("# Local RAG System")
         with gr.Row():
             with gr.Column():
                 question = gr.Textbox(label="Question", placeholder="Ask something...")
-                collection = gr.Dropdown(choices=COLLECTIONS, value="default", label="Collection")
+                collection = gr.Dropdown(choices=collections, value=default_collection, label="Collection")
                 model = gr.Dropdown(choices=models, value=models[0], label="Model")
                 top_k = gr.Slider(minimum=1, maximum=20, value=5, step=1, label="Top K")
                 show_sources = gr.Checkbox(value=True, label="Show Sources")

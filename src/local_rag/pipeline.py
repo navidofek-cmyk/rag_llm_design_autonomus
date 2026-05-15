@@ -21,7 +21,7 @@ class RAGPipeline:
         else:
             self.reranker = None
 
-    def ingest(self, path: str, collection: str = "default") -> int:
+    def ingest(self, path: str, collection: str = "default", embed_batch: int = 512) -> int:
         p = Path(path)
         if p.is_dir():
             chunks = ingest.load_directory(p)
@@ -29,7 +29,12 @@ class RAGPipeline:
             chunks = ingest.load_file(p)
         if not chunks:
             return 0
-        embeddings = self.embedder.embed([c.text for c in chunks])
+        import numpy as np
+        all_embeddings = []
+        for i in range(0, len(chunks), embed_batch):
+            batch = chunks[i : i + embed_batch]
+            all_embeddings.append(self.embedder.embed([c.text for c in batch]))
+        embeddings = np.vstack(all_embeddings)
         store.add_chunks(chunks, embeddings, self.chroma_dir, collection)
         self._bm25_cache.pop(collection, None)
         return len(chunks)
