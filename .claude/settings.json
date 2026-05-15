@@ -1,0 +1,104 @@
+{
+  "permissions": {
+    "defaultMode": "acceptEdits",
+
+    "allow": [
+      "Bash(uv sync)",
+      "Bash(uv pip *)",
+      "Bash(uv run *)",
+      "Bash(uv add *)",
+      "Bash(uv init *)",
+      "Bash(python *)",
+      "Bash(pytest *)",
+      "Bash(ruff *)",
+      "Bash(mypy *)",
+      "Bash(git status)",
+      "Bash(git diff *)",
+      "Bash(git log *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git branch *)",
+      "Bash(git checkout *)",
+      "Bash(git stash *)",
+      "Bash(git restore *)",
+      "Bash(git show *)",
+      "Bash(git revert *)",
+      "Bash(git init)",
+      "Bash(git clone --depth *)",
+      "Bash(ls *)",
+      "Bash(cat *)",
+      "Bash(head *)",
+      "Bash(tail *)",
+      "Bash(cp *)",
+      "Bash(mv *)",
+      "Bash(mkdir -p *)",
+      "Bash(find . *)",
+      "Bash(grep *)",
+      "Bash(wc *)",
+      "Bash(echo *)",
+      "Bash(chmod +x *)",
+      "Bash(time *)",
+      "Bash(rm -rf /tmp/*)",
+      "Bash(curl http://localhost:*)",
+      "Bash(ollama list)",
+      "Bash(touch *)",
+      "Bash(rmdir *)",
+      "Bash(tree *)",
+      "Bash(git remote *)",
+      "Task",
+      "Read",
+      "Write",
+      "Edit",
+      "Glob",
+      "Grep"
+    ],
+
+    "deny": [
+      "Bash(rm *)",
+      "Bash(sudo *)",
+      "Bash(su *)",
+      "Bash(chmod 777 *)",
+      "Bash(chmod 666 *)",
+      "Bash(git push *)",
+      "Bash(git reset *)",
+      "Bash(git clean *)",
+      "Bash(git rebase *)",
+      "Bash(git merge *)",
+      "Bash(pip install *)",
+      "Bash(dd *)",
+      "Bash(mkfs *)",
+      "Bash(fdisk *)",
+      "Bash(crontab *)",
+      "Bash(systemctl *)",
+      "Bash(curl https://*)",
+      "Bash(wget *)",
+      "Bash(nc *)",
+      "WebFetch"
+    ]
+  },
+
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/pre_sandbox.sh"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv run ruff format \"$CLAUDE_TOOL_INPUT_FILE_PATH\" 2>/dev/null || true"
+          }
+        ]
+      }
+    ]
+  }
+}
