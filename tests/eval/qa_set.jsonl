@@ -1,0 +1,12 @@
+{"question": "What is PEP 8?", "answer": "PEP 8 is the style guide for Python code, covering naming conventions, indentation, and code layout.", "negative": false}
+{"question": "What does PEP 20 (The Zen of Python) say about readability?", "answer": "Readability counts. Explicit is better than implicit.", "negative": false}
+{"question": "What is the difference between a list and a tuple in Python?", "answer": "Lists are mutable sequences while tuples are immutable. Tuples are typically used for heterogeneous data, lists for homogeneous data.", "negative": false}
+{"question": "How does Python's GIL affect multi-threading?", "answer": "The GIL (Global Interpreter Lock) prevents multiple native threads from executing Python bytecodes at once, limiting CPU-bound parallelism in CPython.", "negative": false}
+{"question": "What is a generator in Python and how is it different from a list?", "answer": "A generator is a lazy iterator that yields values one at a time using the yield keyword, using much less memory than a list that stores all values.", "negative": false}
+{"question": "What does PEP 484 introduce?", "answer": "PEP 484 introduces type hints for Python, enabling static type checking with tools like mypy.", "negative": false}
+{"question": "How do decorators work in Python?", "answer": "Decorators are callables that wrap another function, modifying or extending its behavior without changing its source code. Applied with @ syntax.", "negative": false}
+{"question": "What is the purpose of __init__.py?", "answer": "__init__.py marks a directory as a Python package and can contain package initialization code.", "negative": false}
+{"question": "What is FastAPI and what are its main features?", "answer": "FastAPI is a modern Python web framework for building APIs with automatic OpenAPI docs, type validation via Pydantic, and async support.", "negative": false}
+{"question": "What is the asyncio event loop?", "answer": "The asyncio event loop manages and runs asynchronous tasks and coroutines, scheduling IO-bound operations without blocking the main thread.", "negative": false}
+{"question": "What is the capital of Mars?", "answer": "I don't know based on the provided context.", "negative": true}
+{"question": "Who won the 2026 World Cup?", "answer": "I don't know based on the provided context.", "negative": true}

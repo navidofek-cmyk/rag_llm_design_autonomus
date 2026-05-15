@@ -1,0 +1,41 @@
+[project]
+name = "rag-llm-design-autonomus"
+version = "0.1.0"
+description = "Local RAG system with hybrid retrieval, reranking, and swarm search"
+requires-python = ">=3.12"
+dependencies = [
+    "chromadb>=0.5",
+    "sentence-transformers>=3.0",
+    "sentence-transformers[cross-encoders]>=3.0",
+    "pymupdf>=1.24",
+    "typer>=0.12",
+    "python-dotenv>=1.0",
+    "httpx>=0.27",
+    "numpy>=1.26",
+    "rank-bm25>=0.2",
+    "fastapi>=0.110",
+    "uvicorn>=0.29",
+    "gradio>=4.0",
+]
+
+[project.scripts]
+rag = "local_rag.cli:app"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/local_rag"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+
+[tool.uv]
+dev-dependencies = [
+    "pytest>=8.0",
+    "ruff>=0.5",
+    "mypy>=1.10",
+    "pytest-mock>=3.14",
+    "httpx>=0.27",
+]
