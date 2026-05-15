@@ -30,6 +30,8 @@
       "Bash(head *)",
       "Bash(tail *)",
       "Bash(cp *)",
+      "Bash(cp -r *)",
+      "Bash(cp -rf *)",
       "Bash(mv *)",
       "Bash(mkdir -p *)",
       "Bash(find . *)",
