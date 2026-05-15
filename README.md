@@ -2,6 +2,8 @@
 
 A production-ready Retrieval-Augmented Generation system with hybrid retrieval, cross-encoder reranking, and swarm search across multiple collections.
 
+> 🇨🇿 **Česká verze:** [README.cs.md](README.cs.md)
+
 ## Stack
 
 | Component | Technology |

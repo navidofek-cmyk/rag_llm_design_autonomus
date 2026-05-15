@@ -1,0 +1,65 @@
+site_name: Local RAG — Learning Guide
+site_description: A deep-dive into building a RAG system from scratch — embeddings, vector search, BM25, hybrid retrieval, reranking, and swarm agents.
+site_author: navidofek-cmyk
+repo_url: https://github.com/navidofek-cmyk/rag_llm_design_autonomus
+repo_name: rag_llm_design_autonomus
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - search.highlight
+    - search.suggest
+    - content.code.copy
+    - content.code.annotate
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+  - attr_list
+  - md_in_html
+  - tables
+  - footnotes
+
+nav:
+  - Home: index.md
+  - Quick Start: quickstart.md
+  - Concepts:
+      - What is RAG: concepts/rag.md
+      - Embeddings: concepts/embeddings.md
+      - Vector Search: concepts/vector-search.md
+      - BM25 Sparse Retrieval: concepts/bm25.md
+      - Hybrid Retrieval & RRF: concepts/hybrid-rrf.md
+      - Reranking: concepts/reranking.md
+      - Swarm Search: concepts/swarm.md
+  - Architecture: architecture.md
+  - Modules:
+      - ingest.py: modules/ingest.md
+      - store.py: modules/store.md
+      - pipeline.py: modules/pipeline.md
+      - llm.py: modules/llm.md
+      - api.py: modules/api.md
+  - Decisions: decisions.md
