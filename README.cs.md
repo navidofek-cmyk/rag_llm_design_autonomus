@@ -2,7 +2,7 @@
 
 Produkčně připravený systém pro Retrieval-Augmented Generation s hybridním vyhledáváním, CrossEncoder rerankingem a swarm vyhledáváním přes více kolekcí.
 
-> 📖 **Anglická verze:** [README.md](README.md)
+> 📖 **Anglická verze:** [README.md](README.md) &nbsp;|&nbsp; 🌐 **Learning Guide:** [navidofek-cmyk.github.io/rag_llm_design_autonomus](https://navidofek-cmyk.github.io/rag_llm_design_autonomus/)
 
 ## Stack
 

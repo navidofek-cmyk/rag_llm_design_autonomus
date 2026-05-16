@@ -2,7 +2,7 @@
 
 A production-ready Retrieval-Augmented Generation system with hybrid retrieval, cross-encoder reranking, and swarm search across multiple collections.
 
-> 🇨🇿 **Česká verze:** [README.cs.md](README.cs.md)
+> 🇨🇿 **Česká verze:** [README.cs.md](README.cs.md) &nbsp;|&nbsp; 📖 **Learning Guide:** [navidofek-cmyk.github.io/rag_llm_design_autonomus](https://navidofek-cmyk.github.io/rag_llm_design_autonomus/)
 
 ## Stack
 
