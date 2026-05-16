@@ -39,9 +39,9 @@ def query(
         n_results=top_k,
         include=["documents", "metadatas", "distances"],
     )
-    docs = results["documents"][0]
-    metas = results["metadatas"][0]
-    dists = results["distances"][0]
+    docs = (results["documents"] or [[]])[0]
+    metas = (results["metadatas"] or [[]])[0]
+    dists = (results["distances"] or [[]])[0]
     return [
         {
             "text": doc,

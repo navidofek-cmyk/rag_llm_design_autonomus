@@ -3,7 +3,7 @@ from typing import Any
 
 import chromadb
 import numpy as np
-from rank_bm25 import BM25Okapi
+from rank_bm25 import BM25Okapi  # type: ignore[import-untyped]
 
 
 @dataclass

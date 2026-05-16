@@ -70,7 +70,7 @@ def inspect(
         typer.echo(f"Collection '{collection}': {count} chunks")
         if count > 0:
             sample = col.get(limit=3, include=["documents", "metadatas"])
-            for i, (doc, meta) in enumerate(zip(sample["documents"], sample["metadatas"]), 1):
+            for i, (doc, meta) in enumerate(zip(sample["documents"] or [], sample["metadatas"] or []), 1):
                 typer.echo(f"  [{i}] {meta.get('source','?')} p.{meta.get('page','?')}: {doc[:100]}...")
     except Exception as e:
         typer.echo(f"Error: {e}", err=True)
