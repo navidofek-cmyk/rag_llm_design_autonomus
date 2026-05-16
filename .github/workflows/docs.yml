@@ -15,14 +15,17 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Install uv
-        uses: astral-sh/setup-uv@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: 3.12
 
-      - name: Set up Python
-        run: uv python install 3.12
+      - name: Install MkDocs Material
+        run: pip install mkdocs-material
 
-      - name: Install MkDocs
-        run: uv pip install --system mkdocs-material
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
 
       - name: Deploy to GitHub Pages
         run: mkdocs gh-deploy --force
